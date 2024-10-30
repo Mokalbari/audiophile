@@ -1,10 +1,12 @@
 export const metadata = {
-  title: 'Audiophile',
-  description: 'Shop the best music equipment.',
+  title: "Audiophile",
+  description: "Shop the best music equipment.",
 }
 
-import { manrope } from '@/styles/fonts'
-import '@/styles/globals.css'
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
+import { manrope } from "@/styles/fonts"
+import "@/styles/globals.css"
 
 export default function RootLayout({
   children,
@@ -12,8 +14,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html className={`${manrope.className}`} lang="en">
-      <body>{children}</body>
+    <html className={`${manrope.className} text-body antialiased`} lang="en">
+      <body>
+        <header>
+          <Navbar />
+        </header>
+        {children}
+        <footer>
+          <Footer />
+        </footer>
+      </body>
     </html>
   )
 }

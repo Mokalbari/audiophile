@@ -16,7 +16,7 @@ export default function Navbar() {
     >
       <IconHamburger className="lg:hidden" />
       <Logo />
-      <ul className="flex gap-9 font-bold uppercase text-white max-lg:hidden">
+      <ul className="text-sub flex gap-9 font-bold uppercase text-white max-lg:hidden">
         <li className="cursor-pointer hover:text-orange">Home</li>
         <li className="cursor-pointer hover:text-orange">Headphones</li>
         <li className="cursor-pointer hover:text-orange">Speakers</li>

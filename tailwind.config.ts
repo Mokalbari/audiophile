@@ -62,7 +62,17 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
-      fontSize: {},
+      fontSize: {
+        xl: "56px", // H1
+        lg: "40px", // H2
+        md: "32px", // H3
+        base: "28px", // H4
+        sm: "24px", // H5
+        xs: "18px", // H6
+        overline: "14px", // Overline
+        sub: "13px", // Sub-title
+        body: "15px", // Body text
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
