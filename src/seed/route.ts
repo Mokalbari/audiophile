@@ -16,7 +16,8 @@ async function seedProducts() {
         category VARCHAR NOT NULL,
         preview_text TEXT,
         description TEXT,
-        price NUMERIC NOT NULL
+        price NUMERIC NOT NULL,
+        is_new BOOLEAN
     )`
 }
 
