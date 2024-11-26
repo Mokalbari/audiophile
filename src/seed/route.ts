@@ -1,17 +1,18 @@
+import {
+  accessories,
+  productAccessories,
+  productImages,
+  products,
+} from "@/lib/data"
 import { db } from "@vercel/postgres"
 
 const client = await db.connect()
 
-async function createExtensions() {
-  await client.sql/*sql*/ `CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`
-}
-
 async function seedProducts() {
   await client.sql/*sql*/ `DROP TABLE IF EXISTS products CASCADE`
   await client.sql/*sql*/ `
-    
     CREATE TABLE IF NOT EXISTS products (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        id VARCHAR PRIMARY KEY,
         name VARCHAR NOT NULL,
         category VARCHAR NOT NULL,
         preview_text TEXT,
@@ -19,6 +20,30 @@ async function seedProducts() {
         price NUMERIC NOT NULL,
         is_new BOOLEAN
     )`
+
+  await Promise.all(
+    products.map(
+      (product) => client.sql/*sql*/ `
+        INSERT INTO products (
+            id,
+            name,
+            category,
+            preview_text,
+            description,
+            price,
+            is_new
+        )
+        VALUES (
+          ${product.id},
+          ${product.name},
+          ${product.category},
+          ${product.preview_text},
+          ${product.description},
+          ${product.price},
+          ${product.is_new}
+        )`,
+    ),
+  )
 }
 
 async function seedAccessories() {
@@ -26,9 +51,24 @@ async function seedAccessories() {
   await client.sql/*sql*/ `
     
     CREATE TABLE IF NOT EXISTS accessories (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        id VARCHAR PRIMARY KEY,
         name VARCHAR NOT NULL UNIQUE
     )`
+
+  await Promise.all(
+    accessories.map(
+      (accessory) => client.sql/*sql*/ `
+          INSERT INTO accessories (
+            id,
+            name
+          )
+          VALUES (
+            ${accessory.id},
+            ${accessory.name}
+          )
+        `,
+    ),
+  )
 }
 
 async function seedProductImages() {
@@ -36,12 +76,30 @@ async function seedProductImages() {
   await client.sql/*sql*/ `
     
     CREATE TABLE IF NOT EXISTS product_images (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        product_id UUID NOT NULL,
+        id VARCHAR PRIMARY KEY,
+        product_id VARCHAR NOT NULL,
         url TEXT NOT NULL,
         is_main BOOLEAN DEFAULT false,
         FOREIGN KEY (product_id) REFERENCES products(id)
     )`
+
+  await Promise.all(
+    productImages.map(
+      (image) => client.sql/*sql*/ `
+          INSERT INTO product_images (
+            id,
+            product_id,
+            url,
+            is_main
+          )
+          VALUES (
+            ${image.id},
+            ${image.product_id},
+            ${image.url},
+            ${image.is_main}
+          )`,
+    ),
+  )
 }
 
 async function seedProductAccessories() {
@@ -49,19 +107,36 @@ async function seedProductAccessories() {
   await client.sql/*sql*/ `
     
     CREATE TABLE IF NOT EXISTS product_accessories (
-        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-        product_id UUID NOT NULL,
-        accessory_id UUID NOT NULL,
+        id VARCHAR PRIMARY KEY,
+        product_id VARCHAR NOT NULL,
+        accessory_id VARCHAR NOT NULL,
         quantity INTEGER DEFAULT 1,
         FOREIGN KEY (product_id) REFERENCES products(id),
         FOREIGN KEY (accessory_id) REFERENCES accessories(id)
     )`
+
+  await Promise.all(
+    productAccessories.map(
+      (accessoryList) => client.sql/*sql*/ `
+        INSERT INTO product_accessories (
+          id,
+          product_id,
+          accessory_id,
+          quantity
+        )
+        VALUES (
+          ${accessoryList.id},
+          ${accessoryList.product_id},
+          ${accessoryList.accessory_id},
+          ${accessoryList.quantity}
+        )`,
+    ),
+  )
 }
 
 export async function GET() {
   try {
     await client.sql/*sql*/ `BEGIN`
-    await createExtensions()
     await seedProducts()
     await seedAccessories()
     await seedProductImages()
