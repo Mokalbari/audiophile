@@ -1,31 +1,9 @@
-type Products = {
-  id: string
-  name: string
-  category: "headphones" | "earphones" | "speakers"
-  preview_text: string
-  description: string
-  price: number
-  is_new: boolean
-}
-
-type Accessories = {
-  id: string
-  name: string
-}
-
-type ProductAccessories = {
-  id: string
-  product_id: string
-  accessory_id: string
-  quantity: number
-}
-
-type ProductImages = {
-  id: string
-  product_id: string
-  url: string
-  is_main: boolean
-}
+import type {
+  Accessories,
+  ProductAccessories,
+  ProductImages,
+  Products,
+} from "./types/definitions"
 
 export const products: Products[] = [
   {
