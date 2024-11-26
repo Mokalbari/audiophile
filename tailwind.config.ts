@@ -9,8 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "orange-accent": "#D87D4A", // rgb(216, 125, 74)
+        "orange-light": "#fbaf85", // rgb(251, 175, 133)
+        "black-default": "#101010", // rgb(16, 16, 16)
+        "white-default": "#FFFFFF", // rgb(255, 255, 255)
+        "gray-light": "#F1F1F1", // rgb(241, 241, 241)
+        "gray-lighter": "#FAFAFA", // rgb(250, 250, 250)
+        "black-pure": "#000000", // rgb(0, 0, 0)
       },
     },
   },
