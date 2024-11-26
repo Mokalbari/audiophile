@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
 
 export default {
   content: [
@@ -17,7 +17,17 @@ export default {
         "gray-lighter": "#FAFAFA", // rgb(250, 250, 250)
         "black-pure": "#000000", // rgb(0, 0, 0)
       },
+      fontSize: {
+        base: "15px",
+        "3xl": "56px",
+        "2xl": "40px",
+        xl: "32px",
+        lg: "24px",
+        md: "18px",
+        sm: "14px",
+        xs: "13px",
+      },
     },
   },
   plugins: [],
-} satisfies Config;
+} satisfies Config
