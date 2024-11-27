@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <div>
       <p>Voici un bouton</p>
-      <Button intent="primary">See Product</Button>
+      <Button intent="chevron">Shop</Button>
     </div>
   )
 }
