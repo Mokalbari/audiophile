@@ -27,6 +27,11 @@ export default {
         sm: "14px",
         xs: "13px",
       },
+      backgroundImage: {
+        "hero-image-dsktp": "url('/hero-image-dsktp.jpg')",
+        "hero-image-mobile": "url('/hero-image-mobile.jpg')",
+        "hero-image-tablet": "url('/hero-image-tablet.jpg')",
+      },
     },
   },
   plugins: [],

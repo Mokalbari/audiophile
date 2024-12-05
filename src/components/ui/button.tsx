@@ -26,9 +26,14 @@ type Props = {
 } & ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof buttonVariants>
 
-export default function Button({ intent, children, ...props }: Props) {
+export default function Button({
+  intent,
+  children,
+  className,
+  ...props
+}: Props) {
   return (
-    <button className={cn(buttonVariants({ intent }))} {...props}>
+    <button className={cn(buttonVariants({ intent }), className)} {...props}>
       {children}
       {intent === "chevron" && (
         <span>
