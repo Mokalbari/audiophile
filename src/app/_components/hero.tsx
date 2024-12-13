@@ -5,9 +5,9 @@ export function Hero() {
   return (
     <section
       className={cn(
-        "bg-hero-image-mobile bg-cover bg-center px-6 pb-32 pt-28 text-center text-white",
-        "md:bg-hero-image-tablet md:px-48 md:py-40",
-        "lg:bg-hero-image-dsktp lg:bg-no-repeat lg:px-28 lg:py-40 lg:text-left",
+        "bg-hero-image-mobile bg-cover bg-center pb-32 pt-28 text-center text-white",
+        "md:bg-hero-image-tablet md:py-40",
+        "lg:bg-hero-image-dsktp lg:bg-no-repeat lg:py-40 lg:text-left",
       )}
     >
       <div className="flex flex-col items-center lg:max-w-96 lg:items-start">
